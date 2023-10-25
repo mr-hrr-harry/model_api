@@ -6,6 +6,8 @@ const app = express()
 
 app.use(express.json())
 
+app.use('/api/userdata/mongodb', require('./router/router.js'))
+
 port = process.env.PORT 
 app.listen(port, () => {
     console.log(`Server is up and listening!`)
