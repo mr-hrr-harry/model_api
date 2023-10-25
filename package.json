@@ -4,7 +4,8 @@
   "description": "This is to recall the working and the structure of the api",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node run server.js",
+    "test": "nodemon run server.js"
   },
   "author": "M A Harish J",
   "license": "MIT",
@@ -12,5 +13,8 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mongoose": "^7.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
