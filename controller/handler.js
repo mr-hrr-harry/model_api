@@ -13,7 +13,7 @@ const getAll = async(req, res) => {
 const getOne = async(req, res) => {
     try{
         const data = await struct.findOne({userID : req.params.uID})
-        data.length !=0 ? res.json(data) : res.send('User not found!')
+        data ? res.json(data) : res.send('User not found!')
     }
     catch(err){
         console.log("Error:\n"+ err) 
@@ -27,18 +27,20 @@ const putOne = async(req, res) => {
         if(!userID || !userName){
             console.log('Insufficient or Incorrect Data!')
             res.send('Insufficient or Incorrect Data!')
+            return
         }
     
-        if(await struct.findOne({userID : req.params.uID})){
+        if(await struct.findOne({userID : userID})){
             console.log('User ID Taken already!')
             res.send('User ID Taken already!')
+            return
         }
-        const user = struct.create({
+        const user = await struct.create({
             userID, userName
         })
     
         await user.validate()
-        const new_data = user.save()
+        const new_data = await user.save()
     
         console.log(new_data)
         res.json(new_data)
